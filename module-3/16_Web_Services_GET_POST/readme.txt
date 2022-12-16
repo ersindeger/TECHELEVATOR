@@ -1,0 +1,2 @@
+Exercise_GET is an optional exercise. It will not be graded.
+exercise is required. You will need to be somewhat familiar with the GET exercise as the post completes it. The exercise starting code has the solution to Exercise_GET inside it, so at the very least review it.

@@ -1,0 +1,127 @@
+-- select * from state;
+
+-- 21. The name and nickname for all records in the state table with no official 
+--nickname (NULL) or nickname starts with the word "The" (13 rows)
+
+Select state_name, state_nickname
+from state
+where state_nickname is NULL OR state_nickname like 'The%';
+
+-- 20. The name, population, area, and population density 
+--(name the column 'population_density') of states, territories, and districts with 
+-- more than 100 people per square kilometer (12 rows)
+-- Population density is expressed as people per square kilometer. In other words, population divided by area.
+
+Select state_name, population, area,
+ population/area AS population_density
+from state
+ where population/area > 100;
+ 
+ 
+SELECT park_name, date_established, area
+FROM park;
+
+
+ 
+Select city_name, state_abbreviation, population
+from city
+where state_abbreviation = 'CO' OR state_abbreviation = 'AZ';
+
+-- 12. The state name, nickname, and sales tax from records in the state
+ -- table in the "West" and "South" census regions with a sales tax that isn't 0% (26 rows)
+ Select state_name, state_nickname, sales_tax
+from state
+where (census_region = 'West' OR  census_region = 'South') AND sales_tax > 0;
+ 
+
+-- 13. The name, abbreviation, and population of all records in the state
+-- table with no official nickname (NULL) (5 rows)
+Select state_name, state_abbreviation, population
+from state
+where state_nickname IS NULL ;
+ 
+ -- 14. The state name, nickname, and census region for states that 
+ -- start with the word "New" (4 rows)
+Select state_name, state_nickname, census_region
+from state
+where state_name like 'New%';
+ 
+ -- 15. The name, state abbreviation, and population for cities that end with 
+ -- the word "City" (11 rows)
+ 
+SELECT city_name, state_abbreviation, population
+from city
+where city_name like '%City';
+ 
+SELECT state_name, population 
+FROM state
+ORDER BY population;
+
+
+SELECT state_name, population 
+FROM state
+WHERE area > 50000
+ORDER BY population DESC; --default is ascending order, denoted by ASC
+
+
+SELECT * FROM city;
+
+SELECT COUNT (city_name) AS cities, state_abbreviation 
+FROM city 
+GROUP BY state_abbreviation
+ORDER BY cities DESC;
+
+SELECT * FROM park;
+
+
+SELECT COUNT(city_name) AS cities,
+	( SELECT state_name FROM state WHERE state_abbreviation = c.state_abbreviation ) AS state_name
+FROM city AS c
+GROUP BY state_abbreviation
+ORDER BY cities DESC;
+
+
+-- List the capital cities for the states in the Northeast census region.
+-- Note the subquery wrapped in () in the WHERE
+-- Note the outer SELECT is FROM city, the inner subquery is FROM state
+-- Note there is no aliasing required anywhere in the statement.
+SELECT state_abbreviation, city_name
+FROM city
+WHERE city_id IN
+    (
+        SELECT capital
+        FROM state
+        WHERE census_region = 'Northeast'
+    )
+ORDER BY state_abbreviation;
+
+
+
+-- SUBQUERIES (optional)
+
+-- Include state name rather than the state abbreviation while counting the number of cities in each state,
+--   ordered from most cities to least.
+-- Note subquery wrapped in () in the SELECT.
+-- Note use of an alias on the city table. Table aliases figure prominently with JOIN statements.
+SELECT COUNT(city_name) AS cities,
+	(
+        SELECT state_name FROM state WHERE state_abbreviation = c.state_abbreviation
+    ) AS state_name
+FROM city AS c
+GROUP BY state_abbreviation
+ORDER BY cities DESC;
+
+
+-- List the capital cities for the states in the Northeast census region.
+-- Note the subquery wrapped in () in the WHERE
+-- Note the outer SELECT is FROM city, the inner subquery is FROM state
+-- Note there is no aliasing required anywhere in the statement.
+SELECT state_abbreviation, city_name
+FROM city
+WHERE city_id IN
+    (
+        SELECT capital
+        FROM state
+        WHERE census_region = 'Northeast'
+    )
+ORDER BY state_abbreviation;

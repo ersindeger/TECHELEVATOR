@@ -1,0 +1,81 @@
+<template>
+  <div>
+    <h1>{{ title }}</h1>
+    <div class="loading" v-if="isLoading">
+      <img src="../assets/ping_pong_loader.gif" />
+    </div>
+    <div class="boards" v-else>
+      <board-column
+        title="Planned"
+        v-bind:cards="planned"
+        v-bind:boardID="this.$route.params.id"
+      />
+      <board-column
+        title="In Progress"
+        v-bind:cards="inProgress"
+        v-bind:boardID="this.$route.params.id"
+      />
+      <board-column
+        title="Completed"
+        v-bind:cards="completed"
+        v-bind:boardID="this.$route.params.id"
+      />
+    </div>
+    <div class="board-actions" v-if="!isLoading">
+      <router-link to="/">Back to Boards</router-link>
+    </div>
+  </div>
+</template>
+
+<script>
+//TODO: Add an import
+
+import BoardColumn from '../components/BoardColumn';
+
+export default {
+  name: 'cards-list',
+  components: {
+    BoardColumn
+  },
+  data() {
+    return {
+      title: '',
+      cards: [],
+      isLoading: true
+    };
+  },
+  //TODO: add a created section to call the board service
+
+  computed: {
+    planned() {
+      return this.cards.filter(card => card.status === 'Planned');
+    },
+    inProgress() {
+      return this.cards.filter(card => card.status === 'In Progress');
+    },
+    completed() {
+      return this.cards.filter(card => card.status === 'Completed');
+    }
+  }
+};
+</script>
+
+<style>
+.boards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.board-actions {
+  text-align: center;
+  padding: 20px 0;
+}
+.board-actions a:link,
+.board-actions a:visited {
+  color: blue;
+  text-decoration: none;
+}
+.board-actions a:hover {
+  text-decoration: underline;
+}
+</style>
