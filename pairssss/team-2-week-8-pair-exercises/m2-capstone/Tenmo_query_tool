@@ -1,0 +1,56 @@
+select * from tenmo_user;
+select * from account;
+select * from transfer;
+select * from transfer_status;
+select * from transfer_type;
+
+--Steve's SLACK message below....
+SELECT transfer.transfer_id, userFrom.user_id AS user_id_from, userFrom.username AS user_from, 
+userTo.user_id AS user_id_to, userTo.username AS user_to, transfer.amount
+FROM transfer
+JOIN account AS acctFrom ON transfer.account_from = acctFrom.account_id
+JOIN tenmo_user AS userFrom ON acctFrom.user_id = userFrom.user_id
+JOIN account AS acctTo ON transfer.account_to = acctTo.account_id
+JOIN tenmo_user AS userTo ON acctTo.user_id = userTo.user_id
+WHERE userFrom.user_id = 1002 OR userTo.user_id = 1002;
+
+SELECT SUM(balance)
+FROM account
+WHERE user_id = 1004 OR user_id=1002;
+
+SELECT transfer.transfer_type_id, transfer.transfer_status_id, 
+transfer.account_from, transfer.account_to, transfer.amount, 
+transfer_type.transfer_type_desc, transfer_status.transfer_status_desc
+FROM transfer
+JOIN transfer_type ON transfer_type.transfer_type_id = transfer.transfer_type_id
+JOIN transfer_status ON transfer_status.transfer_status_id = transfer.transfer_status_id --joins transfer, transfer_status AND transfer_type tables
+WHERE transfer_type.transfer_type_id = 2 AND transfer_status.transfer_status_id = 2
+
+
+SELECT transfer.transfer_id, userFrom.user_id AS user_id_from, userFrom.username AS user_from, 
+userTo.user_id AS user_id_to, userTo.username AS user_to, transfer.amount, transfer_type.transfer_type_desc, transfer_status.transfer_status_desc
+FROM transfer
+JOIN account AS acctFrom ON transfer.account_from = acctFrom.account_id
+JOIN tenmo_user AS userFrom ON acctFrom.user_id = userFrom.user_id
+JOIN account AS acctTo ON transfer.account_to = acctTo.account_id
+JOIN tenmo_user AS userTo ON acctTo.user_id = userTo.user_id
+JOIN transfer_type ON transfer_type.transfer_type_id = transfer.transfer_type_id
+JOIN transfer_status ON transfer_status.transfer_status_id = transfer.transfer_status_id
+WHERE userFrom.user_id = 1002 OR userTo.user_id = 1002;
+
+
+SELECT transfer.transfer_id, userFrom.username AS user_from, userTo.username AS user_to, 
+transfer_type.transfer_type_desc, transfer_status.transfer_status_desc, transfer.amount
+FROM transfer
+JOIN account AS acctFrom ON transfer.account_from = acctFrom.account_id
+JOIN tenmo_user AS userFrom ON acctFrom.user_id = userFrom.user_id
+JOIN account AS acctTo ON transfer.account_to = acctTo.account_id
+JOIN tenmo_user AS userTo ON acctTo.user_id = userTo.user_id
+JOIN transfer_type ON transfer_type.transfer_type_id = transfer.transfer_type_id
+JOIN transfer_status ON transfer_status.transfer_status_id = transfer.transfer_status_id
+WHERE userFrom.user_id = 1002 OR userTo.user_id = 1002;
+
+
+
+INSERT INTO transfer(transfer_type_id, transfer_status_id, account_from, account_to, amount)
+VALUES(2, 2, 2005, 2004, 130.95) RETURNING transfer_type.transfer_type_desc;

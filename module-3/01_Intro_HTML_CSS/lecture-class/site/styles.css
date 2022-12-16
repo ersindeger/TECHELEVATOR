@@ -1,0 +1,39 @@
+img {
+    height: 200px;
+}
+p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+ 
+    font-weight: 500;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h2 {
+    color: green;
+}
+
+a:hover {
+    color:rgb(22, 133, 31);
+    text-decoration: none;
+
+}
+
+/* #lunch {
+    background-color: crimson;
+}
+ */
+
+#dinner {
+    background-color: limegreen;
+}    
+
+.lunch-items {
+    border: maroon;
+    border-style: solid;
+    border-width: 5px;
+    border-radius:  5px;
+}
+

@@ -1,0 +1,8 @@
+{
+    "navigation": {
+        "home": "Home",
+        "about": "About",
+        "demo": "Demo",
+        "hostLogin": "Host Login"
+    }
+}

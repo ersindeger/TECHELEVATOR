@@ -1,0 +1,104 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#left-panel > hr {
+  width: 80%;
+}
+
+#left-panel > nav > menu {
+  padding-left: 2;
+  width: 90%;
+}
+/* ---- Paste below ---- */
+
+#left-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300 px;              /* All this moves the links from TOP to _LEFT&TOP_  */
+}                   
+
+
+body > main {
+  position: absolute;
+  left: 300px;
+}
+
+body > main > article {
+border:4px solid silver;
+border-radius: 8px;
+padding: 10px;
+margin: 15px 0;
+}
+
+main > article > img {
+  float: right;
+  border-radius: 15 px;
+}
+
+body > main > article h3,
+body > main > article h4 {
+  margin: 3px;
+}
+
+body > main > article span.citation {
+   font-size: .7em;    
+     /* do NOT put any space between the number and "em" or else, it won't apply! */
+  color: darkgray;     
+   /*  CNBC links are in darkgray because of this */
+
+}
+
+a[target=_blank] {     /*    _blank value removes the underline on "View Full Coverage"  ..   */
+  text-decoration: none;
+  font-size: .8em;
+
+}
+
+a[target=_blank] :hover {     
+              /*    _blank value removes the underline...   */
+  text-decoration: underline ;    
+              /*    this removes the dots on the left (indicating items) on the left menu   */
+}
+
+#left-panel > nav > menu > li {
+  list-style: none;    /* <=== this gets rid of the DOT next to the links on the left panel */
+  padding: 13px 0;     /* <===  this is the padding (could be regarded as the space between the links) */
+}
+
+#left-panel > nav > menu > li > a {
+  text-decoration: none;      /* <===  gets rid of the underlining on the links in the left panel  */
+  font-size: 1.2rem;      /*  <==== this makes the left menu fonts BIGGER */
+  color: black;
+    /*  <==== this above makes the left menu links "Technology", "Entertainment" etc BLACK */
+  width: 100%;  
+  margin: 15px auto;
+  display: block;
+}
+
+.active-left-menu {
+background-color: rgba(250, 135, 240, 0.5);
+      /*  this above makes the BACKGROUND of the "Business" link purple. Without this, 
+      it would be white, just like others */
+border-radius: 0 30px 30px 0;      /*  <=== this curves around the squarish that borders "Business" on the left menu   */
+color: blue;
+}
+
+#left-panel > nav > menu > li.active-left-menu > a {
+  color: blue;
+   /*  <=== this makes the "Business" link show BLUE inside  */
+}
+
+#left-panel > nav > menu > li:hover {
+  background-color: rgba(71, 91, 104, 0.5);
+  border-radius: 0 30px 30px 0;
+  color: blue;
+}
+
+

@@ -1,0 +1,52 @@
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* we can use names or rgb hex values */
+    background-color:rgb(197, 209, 207)
+}
+
+main {
+    text-align: center;
+}
+
+#facts-section {
+    background-color: rgba(216, 207, 221, 0.918);
+    color: black;
+    padding: 40px;
+    text-align: center;
+  }
+  
+/* Style all elements with the class name "city" */
+.city {
+    background-color: tomato;
+    color: white;
+    padding: 10px;
+  } 
+
+table, th, td {
+  border: 2px solid black;
+}
+
+#quotes-section {
+    background-color: rgba(146, 140, 150, 0.918);
+    color: black;
+    padding: 40px;
+    text-align: left;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+  }
+
+h2{
+    text-decoration: underline;
+}
+
+#links-section{
+    background-color: rgba(216, 207, 221, 0.918);
+    color: black;
+    padding: 40px;
+    text-align: left;
+}
+

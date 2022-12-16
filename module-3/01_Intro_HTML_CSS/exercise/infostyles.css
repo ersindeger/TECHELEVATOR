@@ -1,0 +1,17 @@
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* we can use names or rgb hex values */
+    background-color:rgb(170, 170, 162)
+}
+
+main {
+    text-align: left;
+}
+
+form {
+    background-color: beige;
+}
+
+#name {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

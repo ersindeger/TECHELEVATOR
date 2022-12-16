@@ -1,0 +1,24 @@
+#page-header img {
+    height: 80%;
+  }
+  #page-header > #search {
+    font-size: 20px;
+    height: 40px;
+  }
+  #page-header nav ul {
+    padding-left: 0;
+  }
+  #page-header nav li {
+    list-style-type: none;
+    display: inline;
+  }
+  #page-header nav li:not(:first-child):before {
+    content: "|";
+    padding-right: 5px;
+  }
+  #page-header nav li a {
+    text-decoration: none;
+  }
+  #page-header nav li a:hover {
+    text-decoration: underline;
+  }

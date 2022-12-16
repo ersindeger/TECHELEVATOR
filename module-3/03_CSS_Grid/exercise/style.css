@@ -1,0 +1,212 @@
+* {
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin-left: 7%;
+    margin-right: 7%;
+    background-color: rgba(192, 192, 192, 0.1);
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h1#headline {
+    font-size: 4em;
+    margin-top: 0.15em;
+    margin-bottom: 0.15em;
+    color: #505355;
+    border-bottom: solid 1px black;
+}
+
+h2 {
+    font-size: 1.8em;
+    line-height: 1.45em;
+}
+
+h3 {
+    font-size: 1em;
+    color: #00ADEE;
+}
+
+header img {
+    height: 25px;
+}
+
+.student-gray {
+    color: #505355;
+}
+
+.italic-text {
+    font-style: italic;
+}
+
+#student-picture img{
+    border-radius: 50%;
+}
+
+/* main#main-grid {
+    display: grid;
+    grid-template-areas:
+    " headline headline picture"
+    " quote quote picture"
+    " profile profile contact"
+    " experience experience experience"
+    ;
+} */
+
+
+main#main-grid {
+    display: grid;
+    grid-template-areas:
+    " headline headline picture "
+    " quote quote picture "
+    " profile profile contact "
+    " experience experience experience ";
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
+    align-items: center;
+}
+/* "align-items: center" above 
+ vertically centers the content for ALL grid items */
+
+
+
+#student-quote {
+    grid-area: quote;
+}
+
+#student-profile {
+    grid-area: profile;
+}
+
+#student-contact {
+    grid-area: contact;
+    text-align: center
+;} 
+
+
+#headline {
+    grid-area: headline;
+} 
+
+#student-picture {
+    grid-area: picture;
+    text-align: center;
+
+}  
+
+#experience-grid{
+    grid-area: experience;
+    display: grid; 
+    grid-template-areas: 
+    " code code"
+    " database database"
+    " web design" ;
+    row-gap: 20px;
+    column-gap: 50px;
+    grid-template-columns: 1fr 1fr;
+
+}
+    /*  this defines how the grids are supposed to be visually...  */
+
+
+#experience-code {
+    grid-area: code;
+}
+
+#experience-web {
+    grid-area: web;
+}
+
+#experience-design {
+    grid-area: design;
+}
+
+#experience-database {
+    grid-area: database;
+}
+
+/*STUFF I WROTE*/
+
+@media only screen and (max-width: 1024px){
+    body {
+        background-color: rgb(29, 194, 166);
+    }
+
+    main#main-grid {
+        display: grid;
+        grid-template-areas:
+        "headline headline"
+        "quote picture"
+        "quote contact "
+        " profile profile "
+        " experience experience "
+        ;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 20px;
+        column-gap: 35px;
+        align-items: center;
+    }
+
+    #experience-grid{
+        grid-area: experience;
+        display: grid; 
+        grid-template-areas: 
+        " code web"
+        " database design" ;
+        row-gap: 20px;
+        column-gap: 20px;
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+/* this above ensures the website is mobile responsive (set to 1024 px) */ 
+
+
+@media only screen and (max-width: 450px){
+    body {
+        background-color: rgb(143, 165, 226);
+    }
+
+    main#main-grid {
+        display: grid;
+        grid-template-areas:
+        "headline"
+        "picture"
+        "contact "
+        "quote"
+        "profile"
+        "experience"
+        ;
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+        column-gap: 35px;
+        align-items: center;
+    }
+
+    #experience-grid{
+        grid-area: experience;
+        display: grid; 
+        grid-template-areas: 
+        "code" 
+        "web"
+        "database" 
+        "design" ;
+        row-gap: 20px;
+        column-gap: 20px;
+        grid-template-columns: 1fr;
+    }
+}
+/* this above ensures the website is mobile responsive (set to 450 px) */ 
+
+/*  You center an element vertically with align-items: center & 
+                        horizontally with justify-items: center  */
+

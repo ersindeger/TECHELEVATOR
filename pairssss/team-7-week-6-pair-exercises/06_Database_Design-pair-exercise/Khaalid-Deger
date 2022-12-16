@@ -1,0 +1,85 @@
+BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS pet;
+DROP TABLE IF EXISTS owner;
+DROP TABLE IF EXISTS address;
+DROP TABLE IF EXISTS pet_procedure;
+DROP TABLE IF EXISTS procedure;
+DROP TABLE IF EXISTS invoice;
+
+
+CREATE TABLE address
+(
+	addressId serial NOT NULL,
+	addressHouseNumber varchar(50) NOT NULL,
+	addressStreetName varchar(200) NOT NULL,
+	addressCity varchar(50) NOT NULL,
+	addressState varchar(50) NOT NULL,
+	zipCode varchar(50) NOT NULL,
+	
+	CONSTRAINT PK_address PRIMARY KEY(addressId)
+);
+
+
+CREATE TABLE owner
+(
+	ownerId serial NOT NULL,
+	firstname varchar(50) NOT NULL,
+	lastname varchar(50) NOT NULL,
+	addressId int NOT NULL,
+	
+	CONSTRAINT PK_owner PRIMARY KEY(ownerId),
+	CONSTRAINT FK_owner_address FOREIGN KEY (addressId) REFERENCES address(addressId)
+);
+
+
+CREATE TABLE pet
+(
+	petId serial NOT NULL,
+	petName varchar(50) NOT NULL,
+	petType varchar(50) NOT NULL,
+	petAge int NOT NULL,
+	ownerId int,
+	
+	CONSTRAINT PK_pet PRIMARY KEY(petId),
+	CONSTRAINT FK_pet_owner FOREIGN KEY (ownerId) REFERENCES owner(ownerId)
+);
+
+
+CREATE TABLE invoice
+(
+	invoiceId serial NOT NULL,
+	hospitalName varchar(100) NOT NULL,
+	invoiceDate date NOT NULL,
+	ownerId int NOT NULL,
+	petId int NOT NULL,
+	
+	CONSTRAINT PK_invoice PRIMARY KEY (invoiceId),
+	CONSTRAINT FK_invoice_owner FOREIGN KEY (ownerId) REFERENCES owner(ownerId),
+	CONSTRAINT FK_invoice_pet FOREIGN KEY (petId) REFERENCES pet(petId)	
+);
+
+CREATE TABLE procedure
+(
+	procedureId serial NOT NULL,
+	procedureName varchar(100) NOT NULL,
+	procedureDate date NOT NULL,
+	procedureCost money NOT NULL,
+	invoiceId int NOT NULL,
+	
+	CONSTRAINT PK_procedure PRIMARY KEY (procedureId),
+	CONSTRAINT FK_procedure_invoice FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId)	
+);
+
+
+CREATE TABLE pet_procedure
+(
+	petId int NOT NULL,
+	procedureId int NOT NULL,
+	
+	CONSTRAINT FK_pet_procedure_pet FOREIGN KEY (petId) REFERENCES pet(petId),
+	CONSTRAINT FK_pet_procedure_procedure FOREIGN KEY (procedureId) REFERENCES procedure(procedureId)
+);
+
+
+COMMIT;
